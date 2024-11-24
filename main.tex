@@ -1,0 +1,238 @@
+\documentclass[a4paper,11pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=0.5cm, top=0.8cm, right=0.5cm, bottom=0.8cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge \textbf{Kaushal Kumar}} \\
+    \vspace{2mm}
+    \small
+    Lucknow, India | \href{tel:+917499999362}{+91 7499999362} | \href{mailto:kaushal.codes@gmail.com}{kaushal.codes@gmail.com} \\
+    \href{https://linkedin.com/in/kaushalrathour}{linkedin.com/in/kaushalrathour} | \href{https://github.com/kaushalrathour}{github.com/kaushalrathour}
+\end{center}
+\vspace{-4mm}
+
+
+% Experience
+\section*{Experience}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Mobile App Developer (React Native) Intern} \hfill \textit{Aug 2024 – Nov 2024} \\
+    \text{Tech Instance, Remote}
+    \begin{itemize}[leftmargin=5mm]
+        \item Developed application logic to enhance user experience in the Hunger app and Hunger Partner application.
+        \item Designed UI screens in React Nave based on Figma designs for both application.
+        \item  Suggested improvements for schema and application flow to enhance performance.
+         \item Utilized Firebase for real-me database management and user authentication.
+    \end{itemize}
+\end{itemize}
+
+
+% Projects
+\section*{Projects}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Real Time Chat Application} | \hspace{0.3em} \href{https://real-time-chat-app-git-main-kaushal-rathours-projects-b9acca1e.vercel.app}{Demo}  |  \href{https://github.com/kaushalrathour/Real-Time-Chat-App}{Source Code} \hfill \textit{Mar 2024 - May 2024} \\
+    
+    \begin{itemize}[leftmargin=5mm]
+      \item \textbf{Developed} a real-time chat application to facilitate seamless communication among users.
+      \item \textbf{Implemented} Web Socket protocol for real-time and secure bidirectional messaging.
+      \item \textbf{Enhanced} user experience with intuitive messaging functionalities for one-on-one and group interactions.
+      \item \textbf{Technologies Used:} Node.js, React.js, Express.js, Socket.io, JavaScript, MongoDB, CSS, Render, Vercel, JWT
+    \end{itemize}
+
+    \item \textbf{Hostellers - Student Accommodation Platform} | \hspace{0.3em} \href{https://hostellers.onrender.com/}{Demo}  |  \href{https://github.com/kaushalrathour/Hostellers}{Source Code} \hfill \textit{Dec 2024 – Mar 2024} \\
+    \begin{itemize}[leftmargin=5mm]
+        \item \textbf{Developed} a student accommodation platform, transforming the housing search to boost user engagement.
+        \item \textbf{Provided} detailed facility information, owner details, address, and contact for the hostels.
+        \item \textbf{Implemented} a flexible system allowing businesses to list, update, and delete their accommodations.
+        \item \textbf{Added} personalized and relevant search options for better user experience.
+        \item \textbf{Technologies Used:} Node.js, Express.js, Passport.js, JavaScript, RESTful API, MongoDB, Bootstrap, CSS, EJS
+    \end{itemize}
+\end{itemize}
+
+% Skills
+\section*{Technical Skills}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Version Control:} \hfill \textit{Git, GitHub}
+    \item \textbf{API Testing:} \hfill \textit{Postman, Hoppscotch}
+    \item \textbf{Languages:} \hfill \textit{JavaScript, TypeScript, Java}
+    \item \textbf{Hosting \& Deployment:} \hfill \textit{ MongoDB, MySQL, Oracle}
+    \item \textbf{Front End Technologies:}\hfill \textit{React.js, React Native, Bootstrap, CSS, HTML}
+    \item \textbf{Backend Technologies:}\hfill \textit{ Node.js, Express.js, Socket.io, RESTful APIs, Passport.js}
+\end{itemize}
+
+% Education
+\section*{Education}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Bachelor of Computer Applications} \hfill \textit{Sep 2022 – Jun 2025} \\
+    \text{Integral University, Lucknow}
+    
+    \item \textbf{O Level (NIELIT)} \hfill \textit{Sep 2021 – May 2022} \\
+    \text{Epioneer Institute, Shahjahanpur}
+    
+    \item \textbf{Intermediate (Class XII)} \hfill \textit{Jul 2021} \\
+    \text{Adarsh Rashtriya Inter College, Shahabad}
+\end{itemize}
+
+
+
+% Certifications
+\section*{Certifications}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{MERN Stack Development Certification} \hfill \href{https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIzMzM3IiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvdGh1bWJfNzA1NTg1N18xNzIyNTMzMjY4LnBuZyIsInVzZXJuYW1lIjoiS2F1c2hhbCBLdW1hciJ9}{\textit{Certificate}}
+    \item \textbf{Git \& GitHub Certification} \hfill \href{https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiI3NTgiLCJjZXJ0aWZpY2F0ZV91cmwiOiJodHRwczpcL1wvY2VydGlmaWNhdGVzLnNpbXBsaWNkbi5uZXRcL3NoYXJlXC90aHVtYl83MDc2NTQ1XzE3MjI4NjQ3MTQucG5nIiwidXNlcm5hbWUiOiJLYXVzaGFsIEt1bWFyIn0%3D}{\textit{Certificate}}
+    \item \textbf{Cloud Computing} \hfill \href{https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxNTExIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvdGh1bWJfNzA3Mzk4Ml8xNzIyNzcyMjU1LnBuZyIsInVzZXJuYW1lIjoiS2F1c2hhbCBLdW1hciJ9}{\textit{Certificate}}
+\end{itemize}
+
+% Soft Skills
+\section*{Soft Skills}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Problem-Solving, Adaptability, Time Management, Communication, Teamwork}
+\end{itemize}
+
+\end{document}
